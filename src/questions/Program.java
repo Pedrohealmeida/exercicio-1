@@ -9,7 +9,8 @@ public class Program {
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 
-		int x = 0;
+		int x = 1;
+		int j = 0;
 
 		System.out.print("Enter a string: ");
 		String stringTest = sc.nextLine();
@@ -23,14 +24,13 @@ public class Program {
 		}
 
 		for (int z = 0; z < stringTest.length(); z++) {
-			if ((z + 1) < stringTest.length() && vectChar[x] == vectChar[z + 1] && x != z + 1) {
-				if (vectChar[x] == vectChar[0]) {
+			if(j == 0 && z + 1 != stringTest.length() && vectChar[0] == vectChar[z+1]) {
+				z = 0;
+				j += 1;
+			}
+			if (j != 0 && x < stringTest.length() && vectChar[x] == vectChar[z] && x != z) {
 					x++;
-					z = 0;
-				} else {
-					x++;
-					z = 0;
-				}
+					z = -1;
 			}
 		}
 

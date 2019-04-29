@@ -37,7 +37,7 @@ public class Program3 {
 		try {
 			for (int c = 0; c < x; c++) {
 				if (vect[c] > v) {
-					System.out.println("1");
+					System.out.println("Minimum length subarray: 1");
 				} else {
 					sum += vect[c];
 					if (sum > v) {
