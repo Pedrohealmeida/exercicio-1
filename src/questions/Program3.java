@@ -10,6 +10,7 @@ public class Program3 {
 		Scanner sc = new Scanner(System.in);
 
 		int sum = 0;
+		int sumHigher = 0;
 		int minLength = 0;
 
 		System.out.print("Vect length: ");
@@ -54,6 +55,14 @@ public class Program3 {
 								c -= 1;
 							}
 						}
+						
+						for(int g = x - 1; g >= 0; g--) {
+							if(vect[g] > v) {
+								sumHigher = vect[g];
+								int k = 1;
+							}
+						}
+						
 						System.out.println("Minimum length subarray: " + (c + 1));
 						break;
 					} else if (c == x - 1 && sum <= v) {
@@ -64,6 +73,7 @@ public class Program3 {
 		} catch (RuntimeException e) {
 			System.out.println();
 		}
+		sc.close();
 	}
 
 }

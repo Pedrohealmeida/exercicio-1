@@ -9,7 +9,7 @@ public class Program {
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 
-		int x = 1;
+		int x = 0;
 		int j = 0;
 
 		System.out.print("Enter a string: ");

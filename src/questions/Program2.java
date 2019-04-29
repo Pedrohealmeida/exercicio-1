@@ -4,11 +4,12 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class Program2 {
-
 	public static void main(String[] args) {
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 
+		int sumHigher = 0;
+		
 		System.out.print("Vect length: ");
 		int x = sc.nextInt();
 		int[] vect = new int[x];
@@ -28,12 +29,49 @@ public class Program2 {
 			}
 		}
 
-		int smNumber = 1;
-		for (int z = 0; z < x && vect[z] <= smNumber; z++) {
-			smNumber += vect[z];
+		System.out.print("Value: ");
+		int v = sc.nextInt();
+		int k = 0;
+
+		for (int g = x - 1; g >= 0; g--) {
+			if (vect[g] > v) {
+				sumHigher = vect[g];
+				k = 1;
+
+			} else if (sumHigher == 0 && g == 0) {
+				sumHigher = vect[x - 1];
+				k = 1;
+			}
+			if (sumHigher < v) {
+				if (g == 0) {
+					if (sumHigher <= v) {
+						for (int f = 0; f < x && f != x - 1; f++) {
+							if (f == x - 2 || sumHigher + vect[f] > v) {
+								sumHigher += vect[f];
+								k += 1;
+								if (sumHigher > v) {
+									break;
+								}
+							}
+							if (f == x - 2) {
+								for (int h = x - 2; h >= 0; h--) {
+									sumHigher += vect[h];
+									k += 1;
+									if (sumHigher > v) {
+										break;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 		}
-
-		System.out.println(smNumber);
-
+		if (k > x) {
+			System.out.println("Not possible");
+		} else {
+			System.out.println(k);
+		}
+		sc.close();
 	}
 }
