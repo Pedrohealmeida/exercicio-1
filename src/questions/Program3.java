@@ -4,15 +4,12 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class Program3 {
-
 	public static void main(String[] args) {
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 
-		int sum = 0;
 		int sumHigher = 0;
-		int minLength = 0;
-
+		
 		System.out.print("Vect length: ");
 		int x = sc.nextInt();
 		int[] vect = new int[x];
@@ -34,46 +31,48 @@ public class Program3 {
 
 		System.out.print("Value: ");
 		int v = sc.nextInt();
+		int k = 0;
 
-		try {
-			for (int c = 0; c < x; c++) {
-				if (vect[c] > v) {
-					System.out.println("Minimum length subarray: 1");
-				} else {
-					sum += vect[c];
-					if (sum > v) {
-						for (int f = c; f < x; f++) {
-							if (vect[f] > v) {
-								System.out.println("Minimum length subarray: 1");
-								c = x;
-							}
-						}
+		for (int g = x - 1; g >= 0; g--) {
+			if (vect[g] > v) {
+				sumHigher = vect[g];
+				k = 1;
 
-						for (int e = c; e >= 0; e--) {
-							if (sum - vect[e] > v) {
-								sum -= vect[e];
-								c -= 1;
+			} else if (sumHigher == 0 && g == 0) {
+				sumHigher = vect[x - 1];
+				k = 1;
+			}
+			if (sumHigher < v) {
+				if (g == 0) {
+					if (sumHigher <= v) {
+						for (int f = 0; f < x && f != x - 1; f++) {
+							if (f == x - 2 || sumHigher + vect[f] > v) {
+								sumHigher += vect[f];
+								k += 1;
+								if (sumHigher > v) {
+									break;
+								}
+							}
+							if (f == x - 2) {
+								for (int h = x - 3; h >= 0; h--) {
+									sumHigher += vect[h];
+									k += 1;
+									if (sumHigher > v) {
+										break;
+									}
+								}
 							}
 						}
-						
-						for(int g = x - 1; g >= 0; g--) {
-							if(vect[g] > v) {
-								sumHigher = vect[g];
-								int k = 1;
-							}
-						}
-						
-						System.out.println("Minimum length subarray: " + (c + 1));
-						break;
-					} else if (c == x - 1 && sum <= v) {
-						System.out.println("Not possible");
 					}
 				}
 			}
-		} catch (RuntimeException e) {
-			System.out.println();
+		}
+		if (k > x || sumHigher <= v) {
+			System.out.println("Not possible");
+		} else {
+			System.out.println("Minimum vect length size: " + k);
 		}
 		sc.close();
-	}
 
+	}
 }
