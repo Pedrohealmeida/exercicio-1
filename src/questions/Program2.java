@@ -18,6 +18,8 @@ public class Program2 {
 			vect[a] = sc.nextInt();
 		}
 		
+		Ordernar.ord(x, vect);
+		
 		int min = 1;
 		
 		for(int y = 0; y != x &&  min >= vect[y]; y++) {

@@ -19,15 +19,7 @@ public class Program3 {
 			vect[y] = sc.nextInt();
 		}
 
-		for (int a = 0; a < x; a++) {
-			for (int b = 0; b < x; b++) {
-				if (b + 1 != x && vect[b] > vect[b + 1]) {
-					int aux = vect[b];
-					vect[b] = vect[b + 1];
-					vect[b + 1] = aux;
-				}
-			}
-		}
+		Ordernar.ord(x, vect);
 
 		System.out.print("Value: ");
 		int v = sc.nextInt();
